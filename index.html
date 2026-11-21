@@ -25,6 +25,28 @@
     }
   }
   html, body { margin: 0; padding: 0; }
+
+  /* 登录后切到暖色调，登录页保持中性 */
+  body.app-mode {
+    --bg: #fff8f1; --card: #fffdfb; --ink: #2a1c12; --muted: #8b7360;
+    --line: #f3e4d6; --accent: #e8590c; --accent-soft: #ffe9db;
+    --ok: #3f9d4f;
+    --shadow: 0 1px 2px rgba(90,50,20,.05), 0 10px 28px rgba(90,50,20,.07);
+    background:
+      radial-gradient(1100px 380px at 50% -8%, #ffe9d6 0%, rgba(255,233,214,0) 62%),
+      var(--bg);
+  }
+  @media (prefers-color-scheme: dark) {
+    body.app-mode {
+      --bg: #17110d; --card: #241a14; --ink: #fbeee6; --muted: #b39c8c;
+      --line: #3a2b22; --accent: #ff8a4c; --accent-soft: #3a2318;
+      --ok: #51cf66;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+      background:
+        radial-gradient(1100px 380px at 50% -8%, #2a1a10 0%, rgba(42,26,16,0) 62%),
+        var(--bg);
+    }
+  }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
     background: var(--bg); color: var(--ink); min-height: 100vh;
@@ -90,6 +112,16 @@
   details li { margin-bottom: 6px; }
 
   /* 购物清单 */
+  .picked { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+  .picked .label { font-size: 12px; color: var(--muted); margin-right: 2px; }
+  .picked-chip {
+    width: auto; display: inline-flex; align-items: center; gap: 7px;
+    background: var(--card); border: 1px solid var(--line); color: var(--ink);
+    border-radius: 999px; padding: 7px 11px 7px 12px; font-size: 13px; font-weight: 600;
+    box-shadow: var(--shadow);
+  }
+  .picked-chip .x { color: var(--muted); font-size: 15px; line-height: 1; }
+  .picked-empty { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
   .summary-bar { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: var(--shadow); }
   .progress { height: 8px; background: var(--bg); border-radius: 999px; overflow: hidden; }
   .progress > i { display: block; height: 100%; background: var(--ok); width: 0; transition: width .25s ease; }
@@ -119,7 +151,7 @@
 </head>
 <body>
 
-<script id="payload" type="application/json">{"v":1,"alg":"AES-256-GCM","iter":210000,"salt":"kkrLniHr69SGbNywdeagnA==","iv":"wkGRiDFxyi7vkLxv","data":"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"}</script>
+<script id="payload" type="application/json">{"v":1,"alg":"AES-256-GCM","iter":210000,"salt":"vnv2MdPX8XqvGkyu4KIsqQ==","iv":"aVGyLsPijA6Ulc14","data":"gra3AYIj99N6ePD8OAa2ovGZv/xtA6yV7z8+Xe1ZnO0vxzx3eG1k8di0Z0vgjI/JUAuqK7q8pBqcB2llNoWmdqUf6oepS1sefsWKTaF6I37PVgDzKrKB5pGiQ6ALlek/hbEwPGxZ4xCdfSMeDbRm6z2LbC9NlCh/86nTGwh5YgRY9+P4dyUHtdzmtvVG46w5/ywlEFZJVKqVFM887RKtPkoul1bD4CHwXuCsAvNrH/CGH0xmDLOiozxWwa0lCqAOgPk7T8qkNBc82I/PoML2DBiySW3ORfvhMubIbDYV4TiEFpUBPelGOVhxqMHwJluFQ5kRrVvaMZIaudnLJioxnv8H9SDr0KdilLS9CZ4LBN7VH5tvMtr72HyZs/+zceQG0Rl+XGX2gTbuKezos8Jov2x6shGuwJ3d/LeWHm2xwpINvFTmeYr9BPuVy/gzPqz6D8CVpybM0v90jKi+p18uS5i8GxZntK/vjOYaFcswSCvTiGhELRlQc8MNj8aynL82ewuUNpnVeVL7EG108ZkJjvsANBcULKGnFwbw8zPLPtFKayLy5nqMnff9vGpHODQMWZeCl8op3YcROes2FXEPrhrpfid/kfZcsdZ/Q/66bfWgjhTEI74EqTcRq7kN9jfFgVj/Zqdhhp4xxqKvjIaLmqLCYEMI897klfdzCPCTqhwTIXBZdj0zzwkbt+4+b4yrlPPLjdhXMQQ4t4ct8OTrHMDkCaF28parlpzMa+HpXgMeGHSmPGAMbPk7coVoU6Mb5p+cDk1IJP858abo3hI+2Q+DcvxlflmOs3I/69l4JyXcu1dIUFEpl9bd7DEIMUozCRiy3HmiLDJn4D1pS0F8ya/jmuUuCS2mITV0O4D20pm7rvMrQDij9P9jYJH5TQnP31/5ZYNVCjuM1w4EUyKPCa+M8h7qrZ5QVU7rXTgeXmg8haFh6Yrxb+CJpuI34M61BM/m1JRjQdchfP36kMybixMfjVKoHsTT/nl8h7t697xlN7/tvxmiokWqYgUIJQ5ynW33uyeNwpJWLqd6ah1qy38yg7TzZOkok3eIjnt1kw2Tfqqz6E+sr0p69BNtIqZi95mr4zkGtbFPgU/u/No315zmU6wedDC82JWRGp8iHDytWAuI25HpKampJ+t2oUOegxbHnI+edJXcG/dGEf4e+4xuxKC1EhXdg0AVV0LDZlIDTcZXvGqfJdi3XIU1u5AB6oMOsCQOKc8gQnqLp865wiiN4rnK5/pHBBMRtFNUhGWmHJYVMY5rTdnk0uuO3TtV664yu5VInfqBujq/zaN1WHCTEORse6lUZuBZAvFcLgdzKqnNLGrvc4xOwnSo9L17qogjWwCOHEL9J5YuBey4fWlPsd/NjnLmC+veLZ8VjGOZ+Xvu9vMo9AlYwHesOl0OzHdCZuUfNVWKVHEJxwOT6XC41VX06b9aefKqAtJm+w/rPG+I6nX937sElBKwK1b+Tn3nAio8MlVRMaoW5CO344zbwwRKGoX5n2LKJXHptcVLyGogDcxn80/QFTt0WYj0L0BdwPRwxzhV5bgdfxwAKMC3bLYRTGFN3FgYWLlJ2zy27mz3Usb4u4+NW2jt9HGt9FfGQTlJ+TRhB4T2FtX7LlUevNhkgEzy0gDVb5NP8I8qtGr/sy77Sb4rCSdH6f36V3uw34SscRHpYMyazh6MFLHk//hzMFq9OHpkwLuegaprMnQ9kE+TYuRTgdCEiT0OgPHq1CX1LK6WUARMeqmC/+En6r4z642avWehgZkKnI4dLTj/vDMrkRrQL7ll5gWsmM3XM/JYUfsYYishuqpTXHfhwLXpTZo5urA8bPcY2kCsU9cLK/R4y43vPwrlCKQoNDTLgel4VTFMOFsf/nhWsNjItib0ZNuTIWS94FH8X9FIJPpZbpdT0QXwZodi6rMbznQTInJwvGqoz6ZLWM12gXGGvAkVWF2gnhztesbfLREOrAamhY75RZmzBc7yrIqmETJoifeWdxfvM0ZLYtjTK57M8odkP07zo9VKsw65Z7eNPJJ9ph1+HoTixJEjvR3H+35l/D99EIuFnfJcI0NL/eJnnCDdZFtu1g9bqyfFrRVKfzPf1cI6a/R7IZ82wK7+KUjF/ljnB93/F1j2IZuzm6DIbk/DpoNx/DE9IhoK9jadZmTzAVLsQGs8TisCACxryfwWQQmOgqoT8R4EBfzJalzM0vnZYincRug3nhSWCcjufJBjr16C7P+MdvbbhnBtsf5LzRTANWlGAUQxrOJCpzyBCYwSDOfpLuZvvYv5LHcIMo8aJ2KUS3hr1fBKdaqJ+8ju+iQu2MLlclvc7RatX+DwtcXRnEA2dUU3nl0mPg8KsbpcnIWDaoZQzvPH9vqLtlayUYhm6UFjp3Y2pnz8GWNi+Y6vUu1ZzzJAvgDrKg7ey1ojo90tJ0GVdLQ7xxeCGoeIbJe4xwdezGlLt/8yXBQXDFf14FJEsGQc+rXo2YGu1J3iX3jGfa9zoVEyiIgdpSmRYzhlpQ7z9oPTBsZXXmmIHRHsqQh4DculHepepvYRI+DiuSqFd9R3"}</script>
 
 <section id="gate">
   <div class="brand">
@@ -170,6 +202,7 @@
   var SEL_KEY = "mysite.sel.v1";
   var CHK_KEY = "mysite.chk.v1";
   var CAT_ORDER = ["蔬菜", "肉蛋", "调料", "其他"];
+  var CAT_EMOJI = { "蔬菜": "🥬", "肉蛋": "🥩", "调料": "🧂", "其他": "🛒" };
   var content = null;
   var currentTab = "recipes";
 
@@ -244,6 +277,7 @@
   function startApp() {
     document.getElementById("gate").classList.add("hidden");
     document.getElementById("app").classList.remove("hidden");
+    document.body.classList.add("app-mode");
     document.title = content.appName || "私人空间";
     var name = localStorage.getItem(KEY_USER) || "";
     document.getElementById("hello").textContent = pickGreeting() + (name ? "，" + name : "");
@@ -293,6 +327,7 @@
         var s = selected();
         if (s[r.id]) delete s[r.id]; else s[r.id] = true;
         saveJSON(SEL_KEY, s);
+        pruneChecks();
         render();
       });
 
@@ -335,6 +370,22 @@
     return Object.keys(map).map(function (k) { return map[k]; });
   }
 
+  function pruneChecks() {
+    var keys = {};
+    shoppingList().forEach(function (it) { keys[it.key] = true; });
+    var c = checked(), changed = false;
+    Object.keys(c).forEach(function (k) { if (!keys[k]) { delete c[k]; changed = true; } });
+    if (changed) saveJSON(CHK_KEY, c);
+  }
+
+  function removeRecipe(id) {
+    var s = selected();
+    delete s[id];
+    saveJSON(SEL_KEY, s);
+    pruneChecks();
+    render();
+  }
+
   function renderShop(view) {
     var items = shoppingList();
     var chk = checked();
@@ -349,6 +400,31 @@
       empty.appendChild(go);
       view.appendChild(empty);
       return;
+    }
+
+    // 今天做哪几道菜（点 × 可从清单里剔除）
+    var sel = selected();
+    var picked = (content.recipes || []).filter(function (r) { return sel[r.id]; });
+    if (picked.length) {
+      var strip = document.createElement("div");
+      strip.className = "picked";
+      var lab = document.createElement("span");
+      lab.className = "label";
+      lab.textContent = "今天做";
+      strip.appendChild(lab);
+      picked.forEach(function (r) {
+        var chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "picked-chip";
+        chip.appendChild(document.createTextNode((r.emoji || "🍽") + " " + r.name));
+        var x = document.createElement("span");
+        x.className = "x";
+        x.textContent = "×";
+        chip.appendChild(x);
+        chip.addEventListener("click", function () { removeRecipe(r.id); });
+        strip.appendChild(chip);
+      });
+      view.appendChild(strip);
     }
 
     var bought = items.filter(function (it) { return chk[it.key]; }).length;
@@ -404,7 +480,7 @@
       var g = document.createElement("div");
       g.className = "group";
       var h3 = document.createElement("h3");
-      h3.textContent = cat;
+      h3.textContent = (CAT_EMOJI[cat] || "") + " " + cat;
       g.appendChild(h3);
 
       group.forEach(function (it) {
