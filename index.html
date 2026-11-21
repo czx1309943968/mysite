@@ -145,6 +145,13 @@
     font: inherit; font-size: 14px; line-height: 1.6; outline: none;
   }
   .steps-area:focus { border-color: var(--accent); }
+  .edit-head { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .edit-emoji { font-size: 20px; line-height: 1; }
+  .edit-name { font-size: 15px; font-weight: 700; }
+  .edit-sub { flex: 1; font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .edit-head .chev { color: var(--muted); font-size: 12px; flex: none; }
+  .edit-body { margin-top: 12px; }
+  .mini.danger.armed { background: #d92d20; color: #fff; border-color: #d92d20; }
   .edit-card h2 { font-size: 13px; font-weight: 650; color: var(--muted); margin: 12px 0 6px; }
   .add-recipe { width: 100%; margin: 12px 0 8px; }
   .top-fixed {
@@ -284,7 +291,7 @@
 </head>
 <body>
 
-<script id="payload" type="application/json">{"v":1,"alg":"AES-256-GCM","iter":210000,"salt":"WnA/505CChkuevDplaLJKQ==","iv":"JdRp0lMnWvXp9tbs","data":"n5hqF7RLRuugR5CThlBKaX7FT4Y09pxJ/iO1kOC8tJDd8dHGuKkuMETuVvhxIwyLvlBQcZWZOne/Y5c2qN3i+IAV9kDGCwv5ZC54lSWd1p2DGNumY9ujfXo8bn98zPpqVFr1VTZV6v5my6KWhzmwf0EpX5/iEz9jmxwyIaQ9914oOCW4D21H3wszzKILy0h5SJkFSGOQbvWWP/gJUIxNbZiRUqzBOybIttrmSE/Qp2LwkKUmpnimfYAfwQNLXeN2Yj7XoUEI8v2aEEc7Gc8IohOGXnbmEnDdtGxxO9z/scZBfKH2RuVIOFhEhBA2ZTDiYvQccCCHMzB++G+3dALiKfCbkmt+4LwUExE85r4AUQHyq9SXmH4GM5PJL+SuoTGDutRDzppzR3B3+aEeQj/iw5Hk89dAWwWKXESVQ149ih7yG67FEBcBAF/PVYHkeli0QOs6FbknWmZIzViL7u6ktGPLlaoi0vGh+23frzuPON2j+Y8+0txJQlkU6VaO0B1bXg7Hwv9hr/YOXxOkvalMoWVoJu9+kMOl6qoacBknS6J8A4xYaghK9sqyQXwmKJh1OjZJSfoyX6iAWvSuvmPn5zIXybRv4i9KGprvdfy72E3JUChKPrl/pw2bgPrPKa2JBk6xlj41+ph6aTzY8gGKL7XOENxbaFkmMtB0Nm3/fi71KUhu+B3vD3UiucCeKNWySdCROlA3nkK24rw97CoDhlHcYHiMfcpVngCYynWXgG0b3DWPbSgUT0H62RzA2PsdrFS6wjv4UrdjoxTBy4RPEXyOL6nQRBXJoOakUJsX5zcoIC4M/8I1dWD1S5bVzTheSO9KJre5S+quJjz20EMOL+YzkNM8Ok3OvosSncrmvePKQB80kqUMbTT7FceEtrT6ZQ1On/vJHaF0VtCaQNgkCW545k0UmMNjUMuAzlVL+/axnfDDT1iSuzlLadhB+TUXvnG5ga5G3Vpur6ILKaaYMyEtQ6QjEuXxZzGFIA+d2RaXtPmDapJdo7sKuZgyZJW09PGjHFzFU7rGjt+Mpv1sJu1TNiETs9gkQFcKRKSey4h1JjGC9Xj5n1UKi1gA9fAfj5L9uTyryaAaNum0Cd7T4jHb0XBCX51ek7EPmYNGq+W6tNx+z39MUHQj7r3+IHN8fYNRQzZOOyVx3TC4IyJZR7+eGkRl18pQy/iM3H/KDKRoLsVfw1UxeBdlQsOaUYlozcSDUv1YW+ElJiJ2BUmldfxApKP6zxjeVi7aEJoVZiAvqU7sNnuC1e7wjop15NKvODl8pQRD5dYooqkxTI2THqJjBuQsKhVKX3Rtag29JsNqZrsK0bdp/3uNONFv5gBGw0M7b/z6kMu2KBXg7g50dg/c7eWHaVkwyN8v1dqcVhYV4MpB+T8U1zw/k7ljlTdizKsLkpENWF8DqS1RaEs/yy8YaJU+O2mAGm+RacmELlShk8yKyCzyp0MPsfoAMx01upMHBLzGc/dy3eiZ9vjJVqxYl2PIAEG8Bot90rFsReeItmJ/ttOEywDUurCQ8LlUJBta16Y5K/AkHnX/kcowst6Gphcl7/YH4dKKlsr2LxTGgWrkWcbBEwNMpXniSyN3Q2pz9L8vT3+mLm+thMnRvfIvjhFUVIb8KqDAJ0jtcZWw818Zz6yketIMS4Ekvwc1XmqubGPa5IZ830yn7AQSrn3NMztShYWZJtRJABfvn6dsZIKnrOcnOvO1Ud3NQUD98zONw3CnoX4LR47s3smwa6OhgSgrNMpR4QyvzJxolUS0fqDSYX4mAgppfssoMKVg+d/JYFrOBzN7lOV/hzFnV0W03AImT/+g0YoVG1m8sH7a8O/H22f+k7hjz0ltsYf8iEvHRCDLT83B8ByuwJDht24Cn44qmdI8CtjmY2LNQL6UQ4u29Nbtq0UNntXOflVdWMRHBnUtNaqjDoShxrz15TV8/1BlqIQ7q1Lzn8oPGFGjAgG5dNnuouQjuIhl8P0Ze8CQ84+1JRcDiIiiVNLBwse8zFSX0ZyX+X24LsxdzkSykKWliJ37jkPeULXak8H6uPaXamEn0jRYLJgYo3Z37+DJtajpTpcS5Nh3HfNFTqys5FdvRVpbb8PU8ZoXYu9M9j1g1t3NLyd7bhhHm8gx1c85hk7CnqDh7jYWTR6yY2Gf4/ip1XSPPKbGfiVA7TnLD82XP1zkTzAgnpn4MX/48JCg07S++b38gylaFf02Lgh84w/jkBgWJwakMD9zDTp8Z0QpHrZwzuveiqZ+J4fEuzq05DPOKKe3RQVUw4BsBJRjGItI8sHJE0SsanrMN6e9YFljUBnE2DLvgi6PYeNHOJQRAf6y1u2DUz/ecaA0dzDd6dX1rSpK2Q4N5g/EsXtwcJPRmjgRikFBQ0/XwTw2/Hrksvk/szoeRc+vdFFphMGHtH9lGJTNF2CCvp9ysD+vjSF6mFeiwdjAXJJsAeBsUDnAkFuXepK00RHQ/4Wx9LPGoZS9/vXZ8soWzZA8w3BkYDQhiYbdBweC67r4CGxiQ3HVQ5BOAliHJOQ90x2wqx3LMKCtRPPT78+PJahbh+w1/T9z8nlt6h1kSjA5gyEoqPEBQpKziybIBel+4XehR1cgDr1597XhCBxd9EBcJScJ2VS1vXO8SrZJaCaeSlIkcNim+NV/j6P+hsPAstoDiNZ3fBaXuy78d8hk/mBxoOGTAWPxgzQH6BzvP5lxjoivHRjZfa2xMxQGG3aYZlYeosZvl5AjFBXUOrqS+BZ9o9tnJwoIxDP/F49GW3u/ddbLKWdrYNXNY8teRLGKvbc0dfG6DSqkHWFxobJGs8SYFvOspFgLI/RDgNB6B4gYy1ZbYJ3Dy/acExrlR+QrWpz2zNnUM5AvtOuwEJb/06rvGbCIdCdsoATU1oMPUla3fsVCLVrO/70+EshPT3pInmRxvSK0zEJIJUPxnyNoAJmNRCstUf8/oOAK1Aj5o0oj1wSukGaDngxEkB62gZaEooLVUHpB7OuQ71mhw3YZ3yrbvIIyNHPvnpZm2bpSPPpn/54Xw43B+RYxyXn0il9AjQ7uQXtf2dIa/0B4zI4jKAxLhuY0Lr1FaaeXDmpiGoy4KIe45ztwt/f5wqul50BacL9JYuYAu2ycL0ioqW5znpR999p7eW0f5u1WyA+WiS7TSItFWfizb8nSSHY/Q0mafJnChEObSHzcMm7Avz2wbnyhJbFoQZEtX6gpHjcs4IHFfn+v6St2zF5nJyLAPms574AW/NM2acYetbfduH+ZOglNMF/51Y6vjpfsJBIYeUcWI61ZxseVCdZAGTCmleuK4nFHL39c0vQY4mrxFvh0+BKbLlS6aadvE8ElCj1VivWGKOcCJQALqadnWpOUty2OuUYZJkQIXE+V2sYPy09O9W6pktBh304uxtRl+P7nun3eNHd/BqrgNCbiLzdELaB8K1Oau+8jQ0CFmUePDv7beBA0SYo+xJ1GMBQtjad2yQMbE2yoMokgDpNtUi6qAW1sOOodWHON3LHuQsiNFcXuArIbak1kPKBoyozN899bAv4GD3s7jBbmO9wQyqALtJ+asNeiez6NZudKZZ37mjZwxpHspuhetau4E8NGkT1/mmLJduYabbOZfe9ANxBYg/lDfAJU8AjKHvnXmBrEeMUbpvJ8GUlEbh96imcjGDjxHD16l3hio4Kx8wi9hf/En6u0ruNblIGFrTd6g87J2wyccpxhOBG8O1DgirrheokbdYerPkxNTexxWTUP6HSCo9dH3PIpcxX1dBjeQwxQeuDu5aCPurHcW04pdyXAlpaq3CpZNMo4bg6aHVSooCrgP0mXwBSkXY2pJDITwxrKKfVB6yK4MhMvDlcMltV5i5httRXbCBovmNBfrVuOYbUmX9lZDzdqJphpM3s0AqNGBipbSyEMTOFGs7ru1wBObZ2IhHfFvwIllpcvuP4THZBqAAbUm0vyPb1WwgzzifGfYW0RmGkk4fIKgl7b/aR0QGCMe4tF8rjGhmRkL4LygyZaep+PECts2qHiQ98MXunufeQMyd3ucD9VfQ7keOQbQoxJ6PtcaVHTpBJYebxPcmloP6kEaQZZkFjp88j2OBWkDDDjZnywPg3Z2hzJCs4BXUkbrp/mHyix8jpoxwDuJb86XopFkWfx2mlmv3COxaSq+IKroJX7uDzBawbz2zIY+Q/d4ps6L8lLEcTjEHdOcm315r+OiX+Qsp49vMraEtf6bBbTz3kIK/pd2Byd4EbCLg/UehnL72ngoPxOj9ut/4xidmfWxxjHJOIpP4zWBa5bvdxHePv2xrJoIt3o0MKXdH1ODVcg976BIGKxxsz6U9vt7P9zJDs9N9QMLQGEioNnkZ0yFq1/6Ev/rnQAI3J1r2scbd77t4T3zdfzisJH3te07K1oi3q/HVek/Flqfy7DnfZtg7RQskosl/ajpbW/Y4IQ9snKwBherylK3YosLDBgWQLyR7PkhnlCRNZ+TNMQQz6O8O6XOZnRf7Kr4roTbjsS2wEI7XdHZ3FkK4Eb/VBs6FOGo6nAWlR6LH4wJzSB4E6L2MztLWk/QFQlk2vq9e21klfEeWHTj5GWVQY+LPQYz6Z8pedWK1F9pIe2n2QFLfznTLULFnYbvgchcoQtJSlxTd2BeVwQAH0U0bvURZkFtxgjZsQFm5CvIjbApsMhtxZ4E37yQOZWZDkwj+CxvuyTpvouIAII0wsjNTbbpudgPi6E8zuxB6wr/J7lXag3kaplX9UQr6196QTnrOpTt2eAoQTkn5FNPmDz+EzDCrKHrhqH+ZmAAmKWW13yrCIu18gV3lQ8Mc321duJgahECcYMJySVRCU+3nEkt0j7zVcwZw3j1bequQRfulik5egkQRO2kGoOuMmgcdzuFjxjKuiYokSwWq2SfMf3OfmkeAMPVD7zmtWDuDwA8lK5/dAn+xZsZAt13HamDiXTTM0WdITEfDkAIR52w5/hvFEU4gdQL4iG8H4bBaf34vTkfbHPe2q1dFoxmUr0grSNpu0tvecvVcqYuDt2W04r4tuh8InPYPI0JWardaIvGMCkiiewNzkCyCXh80763T15TYqdDnSR0Mi8ZA=="}</script>
+<script id="payload" type="application/json">{"v":1,"alg":"AES-256-GCM","iter":210000,"salt":"WnA/505CChkuevDplaLJKQ==","iv":"5fqQ8vCGFDmsqpda","data":"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"}</script>
 
 <section id="gate">
   <div class="brand">
@@ -364,6 +371,7 @@
   var RECIPES_KEY = "mysite.recipes.v1";
   var PENDING_KEY = "mysite.pending.v1";
   var editing = false;
+  var editOpen = -1;
   var draft = null;
   var remoteRecipes = null;
   var sessionKey = null;
@@ -893,6 +901,7 @@
   function enterEditMode() {
     if (editing) return;
     editing = true;
+    editOpen = -1;
     draft = JSON.parse(JSON.stringify(recipes()));
     document.getElementById("editBar").classList.remove("hidden");
     document.getElementById("tabRecipes").disabled = true;
@@ -905,6 +914,7 @@
 
   function exitEditMode() {
     editing = false;
+    editOpen = -1;
     draft = null;
     document.getElementById("editBar").classList.add("hidden");
     document.getElementById("tabRecipes").disabled = false;
@@ -954,22 +964,51 @@
 
   function renderEditor(view) {
     (draft || []).forEach(function (r, ri) {
+      var open = (editOpen === ri);
       var card = document.createElement("article");
-      card.className = "recipe edit-card";
+      card.className = "recipe edit-card" + (open ? " open" : "");
 
+      // 折叠头：点一下才展开这道菜
       var head = document.createElement("div");
-      head.className = "r-head";
-      var emoji = document.createElement("div");
-      emoji.className = "r-emoji";
+      head.className = "edit-head";
+      head.addEventListener("click", function () {
+        editOpen = open ? -1 : ri;
+        render();
+      });
+
+      var emoji = document.createElement("span");
+      emoji.className = "edit-emoji";
       emoji.textContent = r.emoji || "🍽";
+
+      var nameSpan = document.createElement("span");
+      nameSpan.className = "edit-name";
+      nameSpan.textContent = (r.name || "").trim() || "（未命名）";
+
+      var metaSpan = document.createElement("span");
+      metaSpan.className = "edit-sub";
+      metaSpan.textContent = r.meta || "";
+
+      var chev = document.createElement("span");
+      chev.className = "chev";
+      chev.textContent = open ? "▾" : "▸";
+
+      head.appendChild(emoji);
+      head.appendChild(nameSpan);
+      head.appendChild(metaSpan);
+      head.appendChild(chev);
+      card.appendChild(head);
+
+      if (!open) { view.appendChild(card); return; }
+
+      var body = document.createElement("div");
+      body.className = "edit-body";
+
       var nameInput = document.createElement("input");
       nameInput.className = "edit-input name-input";
       nameInput.value = r.name || "";
       nameInput.placeholder = "菜名";
       nameInput.addEventListener("input", function () { r.name = nameInput.value; });
-      head.appendChild(emoji);
-      head.appendChild(nameInput);
-      card.appendChild(head);
+      body.appendChild(nameInput);
 
       var metaInput = document.createElement("input");
       metaInput.className = "edit-input";
@@ -977,11 +1016,11 @@
       metaInput.value = r.meta || "";
       metaInput.placeholder = "份量 / 时间，如 10 分钟 · 2 人份";
       metaInput.addEventListener("input", function () { r.meta = metaInput.value; });
-      card.appendChild(metaInput);
+      body.appendChild(metaInput);
 
       var h2 = document.createElement("h2");
       h2.textContent = "食材";
-      card.appendChild(h2);
+      body.appendChild(h2);
 
       r.ingredients = r.ingredients || [];
       r.ingredients.forEach(function (ing, ii) {
@@ -1020,7 +1059,7 @@
         });
 
         row.appendChild(n); row.appendChild(q); row.appendChild(s); row.appendChild(d);
-        card.appendChild(row);
+        body.appendChild(row);
       });
 
       var addIng = document.createElement("button");
@@ -1031,11 +1070,11 @@
         r.ingredients.push({ name: "", qty: "", cat: "其他" });
         render();
       });
-      card.appendChild(addIng);
+      body.appendChild(addIng);
 
       var h3 = document.createElement("h2");
       h3.textContent = "做法（一行一步）";
-      card.appendChild(h3);
+      body.appendChild(h3);
       var ta = document.createElement("textarea");
       ta.className = "steps-area";
       ta.placeholder = "第一步…\n第二步…";
@@ -1043,19 +1082,35 @@
       ta.addEventListener("input", function () {
         r.steps = ta.value.split("\n").map(function (x) { return x.trim(); }).filter(function (x) { return x; });
       });
-      card.appendChild(ta);
+      body.appendChild(ta);
 
+      // 删除：第一次点击变确认，3 秒内再点才真的删
       var del = document.createElement("button");
       del.type = "button";
       del.className = "mini danger";
       del.textContent = "删除这道菜";
       del.style.marginTop = "10px";
+      var armed = false, timer = null;
       del.addEventListener("click", function () {
+        if (!armed) {
+          armed = true;
+          del.classList.add("armed");
+          del.textContent = "再点一次确认删除";
+          timer = setTimeout(function () {
+            armed = false;
+            del.classList.remove("armed");
+            del.textContent = "删除这道菜";
+          }, 3000);
+          return;
+        }
+        clearTimeout(timer);
         draft.splice(ri, 1);
+        editOpen = -1;
         render();
       });
-      card.appendChild(del);
+      body.appendChild(del);
 
+      card.appendChild(body);
       view.appendChild(card);
     });
 
@@ -1065,6 +1120,7 @@
     addCard.textContent = "＋ 新增菜谱";
     addCard.addEventListener("click", function () {
       draft.push({ id: "r" + Date.now(), name: "", emoji: "🍽", meta: "", ingredients: [], steps: [] });
+      editOpen = draft.length - 1;
       render();
     });
     view.appendChild(addCard);
