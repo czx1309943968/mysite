@@ -3,34 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#fff8f3">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="我的小站">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="买菜做饭">
 <meta name="robots" content="noindex, nofollow">
-<title>我的小站</title>
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230b1220'/%3E%3Ctext x='90' y='118' font-size='84' text-anchor='middle' fill='%237aa2ff'%3E%E7%AB%99%3C/text%3E%3C/svg%3E">
+<title>买菜做饭</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23fff1e6'/%3E%3Ctext x='90' y='122' font-size='90' text-anchor='middle'%3E%F0%9F%8D%B3%3C/text%3E%3C/svg%3E">
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   :root {
-    --bg: #f4f6fb; --card: #ffffff; --ink: #101828; --muted: #667085;
-    --line: #e6eaf2; --accent: #3b6bff; --accent-soft: #eaf0ff;
-    --shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px rgba(16,24,40,.06);
-    --danger: #d92d20;
+    --bg: #fff8f3; --card: #ffffff; --ink: #241a12; --muted: #8a7466;
+    --line: #f0e2d6; --accent: #e8590c; --accent-soft: #ffece0;
+    --ok: #2f9e44; --shadow: 0 1px 2px rgba(60,30,10,.05), 0 8px 24px rgba(60,30,10,.06);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0b1220; --card: #131c2e; --ink: #eaf0ff; --muted: #93a1bd;
-      --line: #24314a; --accent: #7aa2ff; --accent-soft: #1b2740;
-      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+      --bg: #17110d; --card: #241a14; --ink: #fbeee6; --muted: #b39c8c;
+      --line: #3a2b22; --accent: #ff8a4c; --accent-soft: #3a2318;
+      --ok: #51cf66; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
     }
   }
   html, body { margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
     background: var(--bg); color: var(--ink); min-height: 100vh;
-    padding: calc(20px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));
-    max-width: 560px; margin: 0 auto; line-height: 1.5;
+    padding: calc(18px + env(safe-area-inset-top)) 14px calc(28px + env(safe-area-inset-bottom));
+    max-width: 600px; margin: 0 auto; line-height: 1.5;
   }
   .hidden { display: none !important; }
 
@@ -40,10 +39,7 @@
   .brand .logo { font-size: 46px; line-height: 1; }
   .brand h1 { font-size: 24px; margin: 10px 0 4px; letter-spacing: -.02em; }
   .brand p { margin: 0; color: var(--muted); font-size: 13px; }
-  .login-card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
-    padding: 20px; box-shadow: var(--shadow);
-  }
+  .login-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); }
   .field { margin-bottom: 12px; }
   .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
   .field input {
@@ -58,37 +54,64 @@
     font-size: 16px; font-weight: 600; color: #fff; background: var(--accent); cursor: pointer;
   }
   button:disabled { opacity: .6; }
-  .err { color: var(--danger); font-size: 13px; min-height: 20px; margin-top: 10px; }
+  .err { color: #d92d20; font-size: 13px; min-height: 20px; margin-top: 10px; }
   .hint { color: var(--muted); font-size: 12px; text-align: center; margin-top: 14px; }
 
-  /* ---------- 内容 ---------- */
-  header { margin-bottom: 18px; }
-  .hello { font-size: 26px; font-weight: 720; letter-spacing: -.02em; margin: 0 0 4px; }
+  /* ---------- 主界面 ---------- */
+  header { margin-bottom: 14px; }
+  .hello { font-size: 24px; font-weight: 720; letter-spacing: -.02em; margin: 0 0 4px; }
   .sub { color: var(--muted); font-size: 13px; margin: 0; }
-  .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-    padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow);
+
+  .tabs { display: flex; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 5px; margin-bottom: 14px; }
+  .tabs button {
+    width: auto; flex: 1; background: transparent; color: var(--muted); font-size: 15px;
+    font-weight: 600; padding: 10px; border-radius: 10px;
   }
-  .card h2 { font-size: 14px; font-weight: 650; margin: 0 0 10px; color: var(--muted); letter-spacing: .02em; }
-  .todo { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; }
-  .todo input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--accent); flex: none; }
-  .todo span { font-size: 15px; }
-  .todo input:checked + span { color: var(--muted); text-decoration: line-through; }
-  textarea {
-    width: 100%; min-height: 96px; resize: vertical; border: 1px solid var(--line);
-    background: var(--bg); color: var(--ink); border-radius: 12px; padding: 10px 12px;
-    font: inherit; font-size: 15px; outline: none;
+  .tabs button.active { background: var(--accent-soft); color: var(--accent); }
+  .count { display: inline-block; min-width: 18px; padding: 0 5px; margin-left: 4px; border-radius: 9px; background: var(--accent); color: #fff; font-size: 11px; line-height: 18px; }
+
+  /* 菜谱卡片 */
+  .recipe { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .r-head { display: flex; align-items: center; gap: 12px; }
+  .r-emoji { font-size: 28px; line-height: 1; }
+  .r-title { flex: 1; min-width: 0; }
+  .r-title h2 { font-size: 17px; margin: 0; font-weight: 700; }
+  .r-title p { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
+  .pick {
+    width: auto; flex: none; font-size: 13px; font-weight: 600; padding: 8px 12px;
+    border-radius: 999px; background: var(--accent-soft); color: var(--accent);
   }
-  textarea:focus { border-color: var(--accent); }
-  .links { display: grid; gap: 8px; }
-  .links a {
-    display: flex; justify-content: space-between; align-items: center;
-    text-decoration: none; color: var(--ink); background: var(--accent-soft);
-    padding: 11px 14px; border-radius: 12px; font-size: 15px;
+  .pick.on { background: var(--accent); color: #fff; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { font-size: 12px; color: var(--muted); background: var(--bg); border: 1px solid var(--line); padding: 3px 9px; border-radius: 999px; }
+  details { margin-top: 10px; }
+  summary { font-size: 13px; color: var(--accent); cursor: pointer; }
+  details ol { margin: 10px 0 0; padding-left: 20px; font-size: 14px; color: var(--ink); }
+  details li { margin-bottom: 6px; }
+
+  /* 购物清单 */
+  .summary-bar { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: var(--shadow); }
+  .progress { height: 8px; background: var(--bg); border-radius: 999px; overflow: hidden; }
+  .progress > i { display: block; height: 100%; background: var(--ok); width: 0; transition: width .25s ease; }
+  .summary-row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; font-size: 13px; color: var(--muted); }
+  .summary-row b { color: var(--ink); font-size: 15px; }
+  .mini {
+    width: auto; padding: 5px 10px; font-size: 12px; font-weight: 600; border-radius: 999px;
+    background: var(--bg); color: var(--muted); border: 1px solid var(--line);
   }
-  .links a span:last-child { color: var(--muted); font-size: 13px; }
-  .quote { font-size: 16px; line-height: 1.6; }
-  .quote::before { content: "“"; color: var(--accent); font-size: 28px; vertical-align: -8px; margin-right: 2px; }
+  .group { margin-bottom: 14px; }
+  .group h3 { font-size: 13px; color: var(--muted); font-weight: 650; margin: 0 0 8px 4px; letter-spacing: .03em; }
+  .item {
+    display: flex; align-items: center; gap: 10px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 8px;
+  }
+  .item input { width: 22px; height: 22px; accent-color: var(--ok); flex: none; }
+  .item .name { flex: 1; font-size: 15px; }
+  .item .qty { font-size: 13px; color: var(--muted); }
+  .item.done .name { color: var(--muted); text-decoration: line-through; }
+  .item.done { background: var(--bg); }
+  .empty { text-align: center; color: var(--muted); padding: 40px 10px; }
+  .empty button { width: auto; margin-top: 12px; padding: 9px 18px; font-size: 14px; }
   footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 18px; }
   .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin-left: 6px; vertical-align: 2px; }
   .logout { background: none; color: var(--muted); font-size: 12px; width: auto; padding: 6px 10px; margin: 10px auto 0; display: block; text-decoration: underline; }
@@ -96,14 +119,13 @@
 </head>
 <body>
 
-<!-- 加密数据：没有口令解密不了，页面源码里也看不到内容 -->
-<script id="payload" type="application/json">{"v":1,"alg":"AES-256-GCM","iter":210000,"salt":"jpmG9+aY2dvffhXOBI1l0Q==","iv":"jMkW5lFVBJCRoSh4","data":"wrp25Od0hdZzaO71ycMESMst2mFqECN2L0tm0NtfdDUMWZj9G/F5O396yyrC0W4g6N8GnwReUl5xIkZs6ul3WrcS9pin0n7VRvXueGZqiNrJQOSuxDhb/oQVLaLuRJvAtj0EDECwqhqiq1QuKU363pZtwGZp5EE4fvCn8Z0CIsIKccTPB7clEyL644KmIUFsrd6Q2uPCKhJtm/Dy12YN16d1qJ9cU7n37OQDhfrBRmraVsbuhW3deAqjkiSWDfpPL9IumZTJjMFqF3ESUd0Fi02HH0hUlLx/WcAgGfvy4yAI5o13plaLJv/xbfeVEdQZwD2cwyJaEeGcs/DB0Qn8FMwlM77TxytGotB0InXHX4gz5OgXKAsVF9U/AbCduHQvrLoI1LdxNaCYmFaX29saBG96KMADyU44es1g+C8Qh8ZLD0fMAeQcsd3zR4QQ64FPVTti7GJ4/Am78bUORRlg+Bj7aSI5dGvmYNPYJoFFzhKjVviEA1IweyvQOnUU4DXj7oQJGpALOfILI9tGFHb25H5m0lKeADChP5SUL3JAyoyTDcAr5PvQe+Et1Wcez0ACmRh84b8bEGHC+44cVU3bwUtD9c7PJzz1clJ+ACY1wlgSxYYqVmGb5wiTlVI/+vQ2K4KwnFrIHiFY6WmfAZ78sQYYOFKSnvQkcP7hTpJZT1QhL6rkVgdZKS8UpTvimp2rW2ZL3WYZ3rJMfA1+7PTEsHBK4yXBdf7M+VjJCWrQJ4dSSZjxPZAm/O7og159LMgiCuAZoXxLI5sD4PwuXQn7Y+LEAk7OjRiFTHJc4hAUT0Mkb108Bf8cfaCGVKZnVZKw7ERDQwLNJEu+pGPMQ8T8UxdVK4P7gFhjUkyddkAr5mLm2HiRkDVtbqYnw2vpFrL4ZaCnS/n+tC3iegqsT0IR+YZ93NDu3aWkGln+t/ENFF99E2D8XQ=="}</script>
+<script id="payload" type="application/json">{"v":1,"alg":"AES-256-GCM","iter":210000,"salt":"mxZyY4e/x+Gt1HmKh5jzbA==","iv":"3esVW5OjWySIaH5C","data":"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"}</script>
 
 <section id="gate">
   <div class="brand">
-    <div class="logo">🐳</div>
-    <h1 id="brandTitle">我的小站</h1>
-    <p>私人页面 · 需要口令</p>
+    <div class="logo">🍳</div>
+    <h1 id="brandTitle">买菜做饭</h1>
+    <p>私人小站 · 需要口令</p>
   </div>
   <form class="login-card" id="loginForm" autocomplete="on">
     <div class="field">
@@ -126,7 +148,14 @@
     <h1 class="hello" id="hello"></h1>
     <p class="sub" id="sub"></p>
   </header>
-  <main id="main"></main>
+
+  <nav class="tabs">
+    <button id="tabRecipes" class="active" type="button">菜谱</button>
+    <button id="tabShop" type="button">买菜清单<span class="count hidden" id="shopCount"></span></button>
+  </nav>
+
+  <main id="view"></main>
+
   <footer id="footer"></footer>
   <button class="logout" id="logout" type="button">退出登录</button>
 </section>
@@ -138,10 +167,13 @@
   var PAYLOAD = JSON.parse(document.getElementById("payload").textContent);
   var KEY_CACHE = "mysite.key.v1";
   var KEY_USER = "mysite.user.v1";
-  var KEY_TODO = "mysite.todo.v1";
-  var KEY_NOTE = "mysite.note.v1";
-  var decrypted = null;
+  var SEL_KEY = "mysite.sel.v1";
+  var CHK_KEY = "mysite.chk.v1";
+  var CAT_ORDER = ["蔬菜", "肉蛋", "调料", "其他"];
+  var content = null;
+  var currentTab = "recipes";
 
+  /* ---------- 加解密 ---------- */
   function b64bytes(b64) {
     var bin = atob(b64), arr = new Uint8Array(bin.length);
     for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
@@ -152,54 +184,25 @@
     for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]);
     return btoa(s);
   }
-  function b64url(b64) { return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); }
-  function urlb64(u) {
-    u = u.replace(/-/g, "+").replace(/_/g, "/");
-    while (u.length % 4) u += "=";
-    return u;
-  }
-
   async function deriveKey(password) {
     var enc = new TextEncoder();
     var base = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
     return crypto.subtle.deriveKey(
       { name: "PBKDF2", salt: b64bytes(PAYLOAD.salt), iterations: PAYLOAD.iter, hash: "SHA-256" },
-      base,
-      { name: "AES-GCM", length: 256 },
-      true,
-      ["decrypt"]
+      base, { name: "AES-GCM", length: 256 }, true, ["decrypt"]
     );
   }
-
   async function decryptWith(key) {
-    var plain = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: b64bytes(PAYLOAD.iv) },
-      key,
-      b64bytes(PAYLOAD.data)
-    );
+    var plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64bytes(PAYLOAD.iv) }, key, b64bytes(PAYLOAD.data));
     return JSON.parse(new TextDecoder().decode(plain));
   }
-
-  async function unlock(password, remember) {
-    var key = await deriveKey(password);
-    var content = await decryptWith(key);
-    if (remember) {
-      try {
-        var raw = await crypto.subtle.exportKey("raw", key);
-        localStorage.setItem(KEY_CACHE, bytesB64(raw));
-      } catch (e) {}
-    }
-    decrypted = content;
-    showApp(content);
-  }
-
   async function tryCached() {
     var cached = localStorage.getItem(KEY_CACHE);
     if (!cached) return false;
     try {
       var key = await crypto.subtle.importKey("raw", b64bytes(cached), { name: "AES-GCM" }, false, ["decrypt"]);
-      decrypted = await decryptWith(key);
-      showApp(decrypted);
+      content = await decryptWith(key);
+      startApp();
       return true;
     } catch (e) {
       localStorage.removeItem(KEY_CACHE);
@@ -207,22 +210,7 @@
     }
   }
 
-  function pickGreeting(content) {
-    if (content.greeting) return content.greeting;
-    var h = new Date().getHours();
-    if (h < 6) return "夜深了";
-    if (h < 11) return "早上好";
-    if (h < 14) return "中午好";
-    if (h < 18) return "下午好";
-    return "晚上好";
-  }
-
-  function todayText() {
-    var d = new Date();
-    var week = ["日", "一", "二", "三", "四", "五", "六"][d.getDay()];
-    return (d.getMonth() + 1) + "月" + d.getDate() + "日 · 星期" + week;
-  }
-
+  /* ---------- 存储 ---------- */
   function loadJSON(key, fallback) {
     try { var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
     catch (e) { return fallback; }
@@ -230,83 +218,225 @@
   function saveJSON(key, value) {
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
   }
+  function selected() { return loadJSON(SEL_KEY, {}); }
+  function checked() { return loadJSON(CHK_KEY, {}); }
+  function selectedIds() {
+    var s = selected(), out = [];
+    (content.recipes || []).forEach(function (r) { if (s[r.id]) out.push(r.id); });
+    return out;
+  }
 
-  function showApp(content) {
+  /* ---------- 界面 ---------- */
+  function pickGreeting() {
+    var h = new Date().getHours();
+    if (h < 6) return "夜深了";
+    if (h < 11) return "早上好";
+    if (h < 14) return "中午好";
+    if (h < 18) return "下午好";
+    return "晚上好";
+  }
+  function todayText() {
+    var d = new Date();
+    var week = ["日", "一", "二", "三", "四", "五", "六"][d.getDay()];
+    return (d.getMonth() + 1) + "月" + d.getDate() + "日 · 星期" + week;
+  }
+
+  function startApp() {
     document.getElementById("gate").classList.add("hidden");
     document.getElementById("app").classList.remove("hidden");
-    document.title = content.appName || "我的小站";
-    document.getElementById("hello").textContent = pickGreeting(content) + "，" + (localStorage.getItem(KEY_USER) || "刘哲");
+    document.title = content.appName || "买菜做饭";
+    var name = localStorage.getItem(KEY_USER) || "";
+    document.getElementById("hello").textContent = pickGreeting() + (name ? "，" + name : "");
     document.getElementById("sub").textContent = todayText() + " · " + (content.subtitle || "");
-
-    var main = document.getElementById("main");
-    main.innerHTML = "";
-
-    (content.cards || []).forEach(function (card) {
-      var el = document.createElement("section");
-      el.className = "card";
-      var h = document.createElement("h2");
-      h.textContent = card.title || "";
-      el.appendChild(h);
-
-      if (card.type === "todo") {
-        var state = loadJSON(KEY_TODO, {});
-        (card.items || []).forEach(function (text, i) {
-          var row = document.createElement("label");
-          row.className = "todo";
-          var box = document.createElement("input");
-          box.type = "checkbox";
-          box.checked = !!state[i];
-          box.addEventListener("change", function () {
-            var next = loadJSON(KEY_TODO, {});
-            next[i] = box.checked;
-            saveJSON(KEY_TODO, next);
-          });
-          var span = document.createElement("span");
-          span.textContent = text;
-          row.appendChild(box); row.appendChild(span);
-          el.appendChild(row);
-        });
-      }
-
-      if (card.type === "note") {
-        var ta = document.createElement("textarea");
-        ta.placeholder = card.placeholder || "";
-        ta.value = loadJSON(KEY_NOTE, "");
-        ta.addEventListener("input", function () { saveJSON(KEY_NOTE, ta.value); });
-        el.appendChild(ta);
-      }
-
-      if (card.type === "links") {
-        var wrap = document.createElement("div");
-        wrap.className = "links";
-        (card.links || []).forEach(function (link) {
-          var a = document.createElement("a");
-          a.href = link.url; a.target = "_blank"; a.rel = "noopener";
-          var l = document.createElement("span"); l.textContent = link.label;
-          var r = document.createElement("span"); r.textContent = link.hint || "打开";
-          a.appendChild(l); a.appendChild(r);
-          wrap.appendChild(a);
-        });
-        el.appendChild(wrap);
-      }
-
-      if (card.type === "quote") {
-        var q = document.createElement("div");
-        q.className = "quote";
-        q.textContent = content.quote || "";
-        el.appendChild(q);
-      }
-
-      main.appendChild(el);
-    });
-
-    var footer = document.getElementById("footer");
-    footer.innerHTML = "私人页面";
-    var badge = document.createElement("span");
-    badge.className = "badge";
-    badge.textContent = content.version || "";
-    footer.appendChild(badge);
+    render();
   }
+
+  function render() {
+    document.getElementById("tabRecipes").classList.toggle("active", currentTab === "recipes");
+    document.getElementById("tabShop").classList.toggle("active", currentTab === "shop");
+
+    var n = selectedIds().length;
+    var badge = document.getElementById("shopCount");
+    badge.textContent = n ? String(n) : "";
+    badge.classList.toggle("hidden", n === 0);
+
+    var view = document.getElementById("view");
+    view.innerHTML = "";
+    if (currentTab === "recipes") renderRecipes(view);
+    else renderShop(view);
+  }
+
+  function renderRecipes(view) {
+    var sel = selected();
+    (content.recipes || []).forEach(function (r) {
+      var card = document.createElement("article");
+      card.className = "recipe";
+
+      var head = document.createElement("div");
+      head.className = "r-head";
+
+      var emoji = document.createElement("div");
+      emoji.className = "r-emoji";
+      emoji.textContent = r.emoji || "🍽";
+
+      var title = document.createElement("div");
+      title.className = "r-title";
+      var h = document.createElement("h2"); h.textContent = r.name;
+      var p = document.createElement("p"); p.textContent = r.meta || "";
+      title.appendChild(h); title.appendChild(p);
+
+      var btn = document.createElement("button");
+      btn.className = "pick" + (sel[r.id] ? " on" : "");
+      btn.type = "button";
+      btn.textContent = sel[r.id] ? "已加入" : "加入清单";
+      btn.addEventListener("click", function () {
+        var s = selected();
+        if (s[r.id]) delete s[r.id]; else s[r.id] = true;
+        saveJSON(SEL_KEY, s);
+        render();
+      });
+
+      head.appendChild(emoji); head.appendChild(title); head.appendChild(btn);
+      card.appendChild(head);
+
+      var chips = document.createElement("div");
+      chips.className = "chips";
+      (r.ingredients || []).forEach(function (ing) {
+        var c = document.createElement("span");
+        c.className = "chip";
+        c.textContent = ing.name + (ing.qty ? " " + ing.qty : "");
+        chips.appendChild(c);
+      });
+      card.appendChild(chips);
+
+      var det = document.createElement("details");
+      var sum = document.createElement("summary"); sum.textContent = "查看做法";
+      det.appendChild(sum);
+      var ol = document.createElement("ol");
+      (r.steps || []).forEach(function (s) { var li = document.createElement("li"); li.textContent = s; ol.appendChild(li); });
+      det.appendChild(ol);
+      card.appendChild(det);
+
+      view.appendChild(card);
+    });
+  }
+
+  function shoppingList() {
+    var sel = selected();
+    var map = {};
+    (content.recipes || []).forEach(function (r) {
+      if (!sel[r.id]) return;
+      (r.ingredients || []).forEach(function (ing) {
+        var key = (ing.cat || "其他") + "|" + ing.name;
+        if (!map[key]) map[key] = { key: key, name: ing.name, cat: ing.cat || "其他", qtys: [] };
+        if (ing.qty && map[key].qtys.indexOf(ing.qty) < 0) map[key].qtys.push(ing.qty);
+      });
+    });
+    return Object.keys(map).map(function (k) { return map[k]; });
+  }
+
+  function renderShop(view) {
+    var items = shoppingList();
+    var chk = checked();
+
+    if (!items.length) {
+      var empty = document.createElement("div");
+      empty.className = "empty";
+      empty.innerHTML = "<p>清单还是空的<br>先去「菜谱」挑几道想吃的</p>";
+      var go = document.createElement("button");
+      go.type = "button"; go.textContent = "去挑菜";
+      go.addEventListener("click", function () { currentTab = "recipes"; render(); });
+      empty.appendChild(go);
+      view.appendChild(empty);
+      return;
+    }
+
+    var bought = items.filter(function (it) { return chk[it.key]; }).length;
+
+    var bar = document.createElement("div");
+    bar.className = "summary-bar";
+    var prog = document.createElement("div");
+    prog.className = "progress";
+    var fill = document.createElement("i");
+    fill.style.width = Math.round((bought / items.length) * 100) + "%";
+    prog.appendChild(fill);
+    bar.appendChild(prog);
+
+    var row = document.createElement("div");
+    row.className = "summary-row";
+    var txt = document.createElement("span");
+    txt.innerHTML = "已买 <b>" + bought + "</b> / " + items.length;
+    var actions = document.createElement("span");
+
+    var copy = document.createElement("button");
+    copy.className = "mini"; copy.type = "button"; copy.textContent = "复制清单";
+    copy.addEventListener("click", function () {
+      var lines = [];
+      ["蔬菜", "肉蛋", "调料", "其他"].forEach(function (cat) {
+        var group = items.filter(function (it) { return it.cat === cat; });
+        if (!group.length) return;
+        lines.push("【" + cat + "】");
+        group.forEach(function (it) { lines.push((chk[it.key] ? "✓ " : "□ ") + it.name + " " + (it.qtys.join("、") || "")); });
+      });
+      var text = lines.join("\n");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          copy.textContent = "已复制";
+          setTimeout(function () { copy.textContent = "复制清单"; }, 1500);
+        });
+      }
+    });
+    actions.appendChild(copy);
+
+    var reset = document.createElement("button");
+    reset.className = "mini"; reset.type = "button"; reset.textContent = "清空勾选";
+    reset.style.marginLeft = "6px";
+    reset.addEventListener("click", function () { saveJSON(CHK_KEY, {}); render(); });
+    actions.appendChild(reset);
+
+    row.appendChild(txt); row.appendChild(actions);
+    bar.appendChild(row);
+    view.appendChild(bar);
+
+    CAT_ORDER.concat(["其他"]).forEach(function (cat) {
+      var group = items.filter(function (it) { return it.cat === cat; });
+      if (!group.length) return;
+      var g = document.createElement("div");
+      g.className = "group";
+      var h3 = document.createElement("h3");
+      h3.textContent = cat;
+      g.appendChild(h3);
+
+      group.forEach(function (it) {
+        var label = document.createElement("label");
+        label.className = "item" + (chk[it.key] ? " done" : "");
+
+        var box = document.createElement("input");
+        box.type = "checkbox";
+        box.checked = !!chk[it.key];
+        box.addEventListener("change", function () {
+          var c = checked();
+          if (box.checked) c[it.key] = true; else delete c[it.key];
+          saveJSON(CHK_KEY, c);
+          render();
+        });
+
+        var name = document.createElement("span");
+        name.className = "name"; name.textContent = it.name;
+
+        var qty = document.createElement("span");
+        qty.className = "qty"; qty.textContent = it.qtys.join("、");
+
+        label.appendChild(box); label.appendChild(name); label.appendChild(qty);
+        g.appendChild(label);
+      });
+      view.appendChild(g);
+    });
+  }
+
+  /* ---------- 事件 ---------- */
+  document.getElementById("tabRecipes").addEventListener("click", function () { currentTab = "recipes"; render(); });
+  document.getElementById("tabShop").addEventListener("click", function () { currentTab = "shop"; render(); });
 
   document.getElementById("loginForm").addEventListener("submit", async function (ev) {
     ev.preventDefault();
@@ -316,17 +446,23 @@
     var pass = document.getElementById("pass").value;
     if (!pass) { err.textContent = "请输入口令"; return; }
     err.textContent = "";
-    btn.disabled = true;
-    btn.textContent = "验证中…";
+    btn.disabled = true; btn.textContent = "验证中…";
     if (user) localStorage.setItem(KEY_USER, user);
     try {
-      await unlock(pass, document.getElementById("remember").checked);
+      var key = await deriveKey(pass);
+      content = await decryptWith(key);
+      if (document.getElementById("remember").checked) {
+        try {
+          var raw = await crypto.subtle.exportKey("raw", key);
+          localStorage.setItem(KEY_CACHE, bytesB64(raw));
+        } catch (e) {}
+      }
+      startApp();
     } catch (e) {
       err.textContent = "口令不对，或页面已更新，请重试。";
       localStorage.removeItem(KEY_CACHE);
     } finally {
-      btn.disabled = false;
-      btn.textContent = "进入";
+      btn.disabled = false; btn.textContent = "进入";
     }
   });
 
@@ -336,13 +472,8 @@
   });
 
   document.getElementById("user").value = localStorage.getItem(KEY_USER) || "";
-
-  if (localStorage.getItem(KEY_CACHE)) {
-    document.getElementById("gate").classList.add("hidden");
-  }
-  tryCached().then(function (ok) {
-    if (!ok) document.getElementById("gate").classList.remove("hidden");
-  });
+  if (localStorage.getItem(KEY_CACHE)) document.getElementById("gate").classList.add("hidden");
+  tryCached().then(function (ok) { if (!ok) document.getElementById("gate").classList.remove("hidden"); });
 })();
 </script>
 </body>
