@@ -247,6 +247,14 @@
   .modal-ok { background: var(--ok); color: #fff; }
   @keyframes maskIn { from { opacity: 0 } to { opacity: 1 } }
   @keyframes modalIn { from { opacity: 0; transform: translateY(10px) scale(.96) } to { opacity: 1; transform: none } }
+  .toast {
+    position: fixed; left: 50%; bottom: calc(70px + env(safe-area-inset-bottom));
+    transform: translate(-50%, 12px); opacity: 0; pointer-events: none;
+    background: rgba(30,20,12,.92); color: #fff; font-size: 13px; line-height: 1.4;
+    padding: 9px 14px; border-radius: 12px; max-width: 82vw; text-align: center;
+    transition: opacity .2s ease, transform .2s ease; z-index: 120;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
   footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 18px; }
   .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin-left: 6px; vertical-align: 2px; }
   .logout {
@@ -261,7 +269,7 @@
 </head>
 <body>
 
-<script id="payload" type="application/json">{"v":1,"alg":"AES-256-GCM","iter":210000,"salt":"ASDTbBzG83J+1RG9fn+0kA==","iv":"OgWbD5LO80VhSUGL","data":"CgNDJU/E7vEj257tfsnmNP7QvRKdRs6kWV7bqKgngWkneiFHtnDJSbCeZMp8Td1PQ4BnlC0cIgkc3uB3MnEVaniNjh7l/LhH5KOOPq12T1T+M1YqyJUbMgDKmlaM1hoPs08gzlg3sUDGHWOwg6K7o9jvRpw2aTpk/TPQe0xBk1oIWmodPt3Kaltnt3u6J8sOsW6f4s65EGCX/vCV+ICFz3V8KikEFim6Lg4Cn6m5anBDkiR3fsNqbp/PGhdinJF3D4QKfhjYR0u/Ax9mdEsCuTT/7F9ersIE36/A0afugnsOhyJzYRjVICK6y3CLNM4e/M7kcji9xANSvOEE+8qYBLsDDgdxZleZU/dqusK78TpXXDrtsqucA4lfTrb0WHbrDYivJyJzhfc6aZv3g/xQCNtNEKusC39Yywo5f3Aq1EPgUDPAl65PnjB/5F15CLFP9slZxMYn2HOtXWSh4Cg6FPkpTeV108KaVDEwl5K1niAoAH2C/R4SxPBZhZoMuMcng05T5Fz79+aHbaORj/oRlYmjAZLg1I4gZH/+pcWafrFiHUidnEXH58769zbH437TpUSj1/E2ez8xmON9GugFNAop4/UjLFVreMUEZTFTECPYJZ48pWuqi4t+BR3Zd4wBt0imuBWUKeAphtlbOKveiGGJHaA0MPGrkW3WdL9HAAn8UOaJyZ5REB5htCmii3hRMQ6RXQRl38gbBLzkYhSL/wwG80fJuNj+tcNPD/BRMOvVkZJFobvatPkPUPI/YTGc9Lyg+12ZO76m3tnPYGkxwtK1JWNNSf2+zvK6to+scOUFIAtByvKPzXijAskG0pX73uYzHSYHD1DmNgwj4Y9rV8Ptm3aziyBfFs0TPO4wYGUDGfNUdQUKEf+g6rDnEcpLjdQL4AyOlHnOo2X6XTuDDpv3m6rOpBXHQkHeoHyD+jK88gFtA99ksSXtzSMmvj9wFWF6JFe96gmGsrpd2wxfstyHwyaG9BIDB4lgatsbEl4bV2TtbLyRCeJ1CBvqqApnu/ik8DAWvtyxmAIgL7bZoR+2E09Gopg1ZE6aB+uYU4KmSsNhEO/6kYqgLEdV7zkEBJm410TCpSdy/goVhJ3hA5WsbsbTfh5qOWgNph+dQfDKc0roXHSvDvGmN6aDd6m8SxDqP8duygE/MNiD1sks+NBSgy25BN5AtVgt2jDyrsQ+irk5BFOb7c/Mw0lthJZyC8g/GX8q0mlT2ptdpMOCGGIAMMCdQTRvSu4/Z74B/HMHtloKU0dG+4HrUdxKdGY28t1hbY1a1L7kM9z0Ou5bf/eZRS0X3XcaVwzqmIiLmIXP0Xy3ghRtyF0AANozVrXQKwgHr6VNEY1gWgdYVVtZjZ1fekZBpkrnMWC9PVrLDDI7pVMYo9tOn6/6obYveISoLv3plfrwKifZmEcJ1iHqrWt/Wo36vWkUPf2loyCxRDrVKGtkz21rxdgGaF4dEaDEtZ2GfCCmgb6NZKUglZnj+Pzg/WIm7re0Lzwxh+KnbFiG33/YrI/nfYVGzjHX+k+VujX92yRxTfqV4GP9I9fkNUgnQGfbpNv75tqRYC8WiorFzcpPylb+tMjOUsuQKBW4ChYYWJ2SLhgBsfBYo/e1SWd5tk39In/QxUVsgVJlDYUGss4UiWNbge4BbGC5hcWUy/nO7HkHp4IDuXTOF49Ow0xq6CG9hXbeIdaon7XlSSUcqV1Ovo7RE+PunU2ZRFhQM1zlqUkkBLjMkgOzyxiyiRh2lX6yD1hbeNtJ/GkhuHMic+7Vow+UAU4bje3+xUfOfPujNvF1AsvMykSf15dYiKzq580hXsaWsJePWRvwGTQ/1D8Em/k30BJkatbnETgMQW0l416Z1b4CxRpwWxkMP9VNEGfi416qFloTNCnAELMjcOoRzjwm69QprXHbeqixGFA0SA9hn5L7nXyQfJ8MCMUlzJ2rQoGhg9jnl0GKvH+05Zvs+OuHIx97JHoy7aPIycBq4JxVE/11R4zdtwlnosM3jju67AnXo3SyNLj4ZQKnwjx12GMf8p/cwIpRTcFq0T113BCZSNseAsIepy5WyqKQLREhEnBpfZezkrdJ4gJg9EfwMUETUPX6W/O6sMsTj9eY4/+lk/5iAsj2QMhxLAkReE+tIhsqVFC1R96AauMUY4yk2AXa1oOW0hoHR1TgoKm1HNCXmRlX34VZQcMKg9h5Bd5oPQLHAZiMFOGWy1ybxiyfrIOli3tUczSv6FATLddVFJWyc2QHL+7hxwG8D+RCIKmemqhjE9KDxMoQ3FLY/RRJAnbnnxIHqWM4Vh91OoiQmuEQgKo8Sa0x9UO4Jba+dsE4JXNJfHMjHRvj+IgMmf3Oy51D4aBi14/VuCWd0Pro6PmfDocnnBq66wGT4/SJrufAR873CozKcE71CmuXGG6N53wxq/KsOCk3EpFYIl1oPAZSdrehx+uAY0hImVPr1WPODd9ZxzPrbst5gsMWI2dvB5PeG0unuoZeimnXCtLjclRz9ff+/vmQ8I86rUhcpAzHaNC1P/jq4Zx86SUO1d11UcTxAViqaogpuXYfReDo6jZJJ3J9iQr4/D6R9jIvU0iTFusAbz4LGCB4NZ7l4cOL7u1nNg0dqHekSx5m5D2TgpisJNNvZcccdJgaPtk9XyZu0tVwUSm4Hsd/jG2VYGubosfcitj1Q9ekoK8WlB5h0IM8T9LTjenTMGQeZCON2gsU1ATEH1ITB6AdJN0x8OLNPHiuLayIhMZE1Vi3i0yUWO0I91Q8NYwZlaxRV0wpIG1kJeg/MjR1x65y4QBP9js1ACGCDQiBY5Jx91ogzRv0wXMhlhoOTx3n/zEhslnvD9dnCSnr7QcEBYCon+9uyiKwGqEH1kcqsCcq4BZuPnt7qUUXNJV1WPdQ28lOvSGX+Abz3+Fnu3jmHwIsaJ2JRGZaBkikQtkV8w9vqDmYztbgLHmVmWOf+dDROCFlfsgFiVo1266QRvwn0nKOIeCU4kGFNlyoE5PXmY7kHGYFqVOA8wj3ZV1hlBLQbTEfzTPu7aCa9gQoAOJ3MSirx16HOnTuBeBQlCvWHjTqKVUPl3id+gyH/bQ3Hcw46NX7YMK56f8WjhbKmE3kuM8ahlGdO6e4q6DFQVJ2pJW9BdEnAM/2/4BpGtG+kpcVM+Jq3CfSTZKYDvb3hMxy1nPwt0Zp/cfXjxlJEgrsky929jFHvETqs5gjkZsBjvdpMZixFZFE"}</script>
+<script id="payload" type="application/json">{"v":1,"alg":"AES-256-GCM","iter":210000,"salt":"C3vJ/LzxW3ttkoHjci73Cg==","iv":"i6JY0+uEf5BoHeM4","data":"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"}</script>
 
 <section id="gate">
   <div class="brand">
@@ -321,6 +329,8 @@
   <button class="logout" id="logout" type="button">退出登录</button>
 </section>
 
+<div class="toast" id="toast"></div>
+
 <script>
 (function () {
   "use strict";
@@ -337,11 +347,89 @@
   var RECIPES_KEY = "mysite.recipes.v1";
   var editing = false;
   var draft = null;
+  var remoteRecipes = null;
+  var sessionKey = null;
 
   function recipes() {
+    if (remoteRecipes && remoteRecipes.length) return remoteRecipes;
     var saved = loadJSON(RECIPES_KEY, null);
     if (saved && saved.length) return saved;
     return (content && content.recipes) ? content.recipes : [];
+  }
+
+  /* 从云端 data.json 读取菜谱（已用同一口令加密） */
+  async function loadRemoteRecipes(key) {
+    if (!sessionKey) sessionKey = key;
+    try {
+      var res = await fetch("data.json?t=" + Date.now(), { cache: "no-store" });
+      if (!res.ok) return;
+      var d = await res.json();
+      var plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64bytes(d.iv) }, key, b64bytes(d.data));
+      var obj = JSON.parse(new TextDecoder().decode(plain));
+      if (obj && obj.recipes && obj.recipes.length) {
+        remoteRecipes = obj.recipes;
+        saveJSON(RECIPES_KEY, remoteRecipes);
+      }
+    } catch (e) {
+      console.warn("remote recipes unavailable:", e);
+    }
+  }
+
+  /* 把菜谱加密后写回 GitHub 仓库 */
+  async function pushRecipes(list) {
+    var repo = content.editRepo;
+    var token = content.editToken;
+    if (!repo || !token) throw new Error("页面没有云端写入凭据");
+    if (!sessionKey) throw new Error("会话密钥已失效，请重新登录");
+
+    var iv = crypto.getRandomValues(new Uint8Array(12));
+    var enc = new TextEncoder();
+    var buf = await crypto.subtle.encrypt(
+      { name: "AES-GCM", iv: iv },
+      sessionKey,
+      enc.encode(JSON.stringify({ recipes: list }))
+    );
+    var payload = {
+      v: 1, alg: "AES-256-GCM", iter: PAYLOAD.iter, salt: PAYLOAD.salt,
+      iv: bytesB64(iv), data: bytesB64(buf)
+    };
+    var json = JSON.stringify(payload);
+
+    var api = "https://api.github.com/repos/" + repo + "/contents/data.json";
+    var auth = { Authorization: "Bearer " + token, Accept: "application/vnd.github+json" };
+
+    var sha = null;
+    var got = await fetch(api, { headers: auth, cache: "no-store" });
+    if (got.ok) {
+      var meta = await got.json();
+      sha = meta.sha;
+    }
+    var body = {
+      message: "update recipes " + new Date().toISOString(),
+      content: btoa(json),
+      branch: "main"
+    };
+    if (sha) body.sha = sha;
+
+    var res = await fetch(api, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", Authorization: "Bearer " + token, Accept: "application/vnd.github+json" },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      var detail = "";
+      try { detail = (await res.json()).message || ""; } catch (e) {}
+      throw new Error("HTTP " + res.status + (detail ? " " + detail : ""));
+    }
+  }
+
+  function toast(msg) {
+    var el = document.getElementById("toast");
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(function () { el.classList.remove("show"); }, 2600);
   }
 
   /* ---------- 加解密 ---------- */
@@ -373,6 +461,7 @@
     try {
       var key = await crypto.subtle.importKey("raw", b64bytes(cached), { name: "AES-GCM" }, false, ["decrypt"]);
       content = await decryptWith(key);
+      await loadRemoteRecipes(key);
       startApp();
       return true;
     } catch (e) {
@@ -796,7 +885,7 @@
     document.getElementById("tabShop").disabled = false;
   }
 
-  function saveEdits() {
+  async function saveEdits() {
     var clean = [];
     (draft || []).forEach(function (r) {
       var nm = (r.name || "").trim();
@@ -810,10 +899,24 @@
         steps: (r.steps || []).filter(function (s) { return s; })
       });
     });
-    if (!clean.length) return;
+    if (!clean.length) { toast("至少要留一道有名字的菜"); return; }
+
+    var btn = document.getElementById("btnSaveEdit");
+    var old = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "保存中…";
+    remoteRecipes = clean;
     saveJSON(RECIPES_KEY, clean);
-    exitEditMode();
-    render();
+    try {
+      await pushRecipes(clean);
+      toast("已保存到云端，其他设备约 1 分钟后可见");
+      exitEditMode();
+      render();
+    } catch (e) {
+      btn.disabled = false;
+      btn.textContent = old;
+      toast("云端保存失败：" + e.message + "（改动已存本机）");
+    }
   }
 
   function cancelEdits() {
@@ -983,6 +1086,7 @@
     try {
       var key = await deriveKey(pass);
       content = await decryptWith(key);
+      await loadRemoteRecipes(key);
       if (document.getElementById("remember").checked) {
         try {
           var raw = await crypto.subtle.exportKey("raw", key);
